@@ -16,6 +16,7 @@ public final class DataConverter {
     public static void fillStorage(List<String> data, Map<String, User> storage) {
         String[] split;
         for (String s : data) {
+            if (!s.isEmpty()) {
             split = s.split(FIELD_SEPARATOR);
             User user = new User.Builder()
                     .setName(split[0])
@@ -25,6 +26,7 @@ public final class DataConverter {
                     .setPhoneNumber(convertToSet(split[4].split(LIST_SEPARATOR)))
                     .build();
             storage.put(user.getEmail(), user);
+            }
         }
     }
 
